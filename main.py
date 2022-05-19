@@ -92,14 +92,15 @@ def upload_to_sharepoint():
     print('Subido a Sharepoint con exito')
 
 def main():
-    schedule.every().day.at("07:00").do(get_sumary,'Descargando documento')
+    schedule.every().day.at("23:44").do(get_sumary,'Descargando documento')
     while True:
         schedule.run_pending()
         print('Im Working!')
-        time.sleep(60) # wait one minute
+        time.sleep(1) # wait one minute
 
     
-
+if __name__ == '__main__':
+    main()
 
 
 
