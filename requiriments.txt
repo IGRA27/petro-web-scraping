@@ -1,0 +1,16 @@
+certifi==2021.10.8
+cffi==1.15.0
+charset-normalizer==2.0.12
+cryptography==37.0.2
+idna==3.3
+lxml==4.8.0
+ntlm-auth==1.5.0
+pdf-mail==3.0.0
+pycparser==2.21
+PyPDF2==1.27.12
+requests==2.27.1
+requests-ntlm==1.1.0
+requests-toolbelt==0.9.1
+schedule==1.1.0
+SharePlum==0.5.1
+urllib3==1.26.9
