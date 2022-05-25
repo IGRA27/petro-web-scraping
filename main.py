@@ -8,6 +8,7 @@ import PyPDF2
 import os
 from pdf_mail import sendpdf
 from sharepoint import SharePoint
+from datetime import date
 
 
 def get_sumary(text:str)->None:
@@ -17,11 +18,15 @@ def get_sumary(text:str)->None:
         text (_str_): Promt indicando la descarga
     """
     link = 'https://www.eppetroecuador.ec/wp-content/uploads/downloads/2022/05/PRD-PEC-RPR-SUMARIO-OPERACIONES.pdf'
+    day = date.today().day
+    document_day = day - 2
+    link = f'https://www.eppetroecuador.ec/wp-content/uploads/downloads/2022/05/PRD_PEC-RPR-202205{document_day}-SUMARIO-OPERACIONES.pdf'
+    #
     data = requests.get(link).content
     print(text)
     with open('docs/sumario.pdf','wb') as file:
         file.write(data)
-    upload_to_sharepoint()
+    #upload_to_sharepoint()
     
         
 
@@ -69,7 +74,7 @@ def get_name():
     return time_stamped   
 
 
-def upload_to_sharepoint():
+def upload_to_sharepoint(t):
     pdfObj = open('docs/sumario.pdf', 'rb')
     pdfReader = PyPDF2.PdfFileReader(pdfObj)
     pdfPage = pdfReader.getPage(0)
@@ -85,20 +90,23 @@ def upload_to_sharepoint():
     time_set = text_date[26:28]
 
     time_stamped = month+'-'+day+'-'+year+'-'+hour+time_set
-
+    file_name = time_stamped + '.pdf'
     path_to_file = 'docs/sumario.pdf'
-    print('Subiendo a sharepoing..')
-    SharePoint().upload_file(path_to_file, time_stamped+'.pdf','Sumario_PetroEcuador')
-    print('Subido a Sharepoint con exito')
+    #print('Subiendo a sharepoing..')
+    SharePoint().upload_file(path_to_file, file_name,'Sumario_PetroEcuador')
+    print(t)
 
 def main():
-    schedule.every().day.at("09:00").do(get_sumary,'Descargando documento')
+    schedule.every().day.at("10:30").do(get_sumary,'Descargando documento')
+    schedule.every().day.at("10:32").do(upload_to_sharepoint,'Documento en Sharepoint')
+
     while True:
         schedule.run_pending()
         #print('Im Working!')
         time.sleep(1) # wait one minute
 
     
+
 if __name__ == '__main__':
     main()
 
