@@ -19,7 +19,7 @@ def get_sumary(text:str)->None:
     """
     link = 'https://www.eppetroecuador.ec/wp-content/uploads/downloads/2022/05/PRD-PEC-RPR-SUMARIO-OPERACIONES.pdf'
     day = date.today().day
-    document_day = day - 2
+    document_day = day - 1
     link = f'https://www.eppetroecuador.ec/wp-content/uploads/downloads/2022/05/PRD_PEC-RPR-202205{document_day}-SUMARIO-OPERACIONES.pdf'
     #
     data = requests.get(link).content
@@ -97,8 +97,8 @@ def upload_to_sharepoint(t):
     print(t)
 
 def main():
-    schedule.every().day.at("10:30").do(get_sumary,'Descargando documento')
-    schedule.every().day.at("10:32").do(upload_to_sharepoint,'Documento en Sharepoint')
+    schedule.every().day.at("12:15").do(get_sumary,'Descargando documento')
+    schedule.every().day.at("12:16").do(upload_to_sharepoint,'Documento en Sharepoint')
 
     while True:
         schedule.run_pending()
