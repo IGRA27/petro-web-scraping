@@ -35,7 +35,7 @@ def get_summary(text:str)->None:
     with open('docs/sumario.pdf','wb') as file:
         file.write(data)
 
-    
+
 def month_name():
     datetime_object = datetime.datetime.strptime(str(date.today().month), "%m")
     full_month_name = datetime_object.strftime("%B")
@@ -46,14 +46,14 @@ def upload_to_sharepoint(status):
     # Setting the name of the file 
     file_name = "0" + str(date.today().day-1)+ "-" + "0" + str(date.today().day) + '_' + "Resumen" + str(date.today().year) + str(date.today().month) + '.pdf'
     path_to_file = 'docs/sumario.pdf'
-    SharePoint().upload_file(path_to_file, file_name,month_name())
+    SharePoint().upload_file(path_to_file, file_name,str(date.today().year)+"/"+str(date.today().month))
     print("Document in this sharepoint location: " + month_name() + '/' + file_name)
 
 
 
 def main():
-    schedule.every().day.at("11:30").do(get_summary,'Sumario descargado')
-    schedule.every().day.at("11:31").do(upload_to_sharepoint,'Documento en Sharepoint')
+    schedule.every().day.at("10:30").do(get_summary,'Sumario descargado')
+    schedule.every().day.at("10:31").do(upload_to_sharepoint,'Documento en Sharepoint')
 
     # Loop
     while True:
@@ -64,6 +64,7 @@ def main():
 
 if __name__ == '__main__':
    main()
+   
 
 
 
