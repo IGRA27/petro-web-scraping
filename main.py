@@ -4,15 +4,51 @@
 import schedule
 import time
 import requests
-import PyPDF2
-import os
 from bs4 import BeautifulSoup
-from pdf_mail import sendpdf
 from sharepoint import SharePoint
 from datetime import date
 import datetime
+from shareplum import Site, Office365
 
 
+
+from pdfminer3.layout import LAParams, LTTextBox
+from pdfminer3.pdfpage import PDFPage
+from pdfminer3.pdfinterp import PDFResourceManager
+from pdfminer3.pdfinterp import PDFPageInterpreter
+from pdfminer3.converter import PDFPageAggregator
+from pdfminer3.converter import TextConverter
+import os
+import json
+
+
+ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
+config_path = '/'.join([ROOT_DIR, 'config.json'])
+
+# read config file
+with open(config_path) as config_file:
+    config = json.load(config_file)
+    config = config['share_point']
+
+
+SHAREPOINT_URL = config['url']
+SHAREPOINT_SITE = config['site']
+
+
+USR = ""
+PASSWD = ""
+
+
+def set_credentials():
+    try:
+        usr = input("Ingrese su usuario de Wellperf: \n")
+        passwd = input("Ingrese su contraseña: \n")
+        creds = [usr, passwd]
+        log = Office365(SHAREPOINT_URL,creds[0], creds[1]).get_cookies()
+        print("Credenciales aprobadas.")
+        return creds 
+    except:
+        print("Credenciales no validas!")
 
 def get_petro_link():
     link = "https://www.eppetroecuador.ec/?p=3721" 
@@ -46,14 +82,14 @@ def upload_to_sharepoint(status):
     # Setting the name of the file 
     file_name = "0" + str(date.today().day-1)+ "-" + "0" + str(date.today().day) + '_' + "Resumen" + str(date.today().year) + str(date.today().month) + '.pdf'
     path_to_file = 'docs/sumario.pdf'
-    SharePoint().upload_file(path_to_file, file_name,str(date.today().year)+"/"+str(date.today().month))
+    SharePoint(USR,PASSWD).upload_file(path_to_file, file_name,str(date.today().year)+"/"+str(date.today().month))
     print("Document in this sharepoint location: " + month_name() + '/' + file_name)
 
 
 
 def main():
-    schedule.every().day.at("10:30").do(get_summary,'Sumario descargado')
-    schedule.every().day.at("10:31").do(upload_to_sharepoint,'Documento en Sharepoint')
+    schedule.every().day.at("10:00").do(get_summary,'Sumario descargado')
+    schedule.every().day.at("10:01").do(upload_to_sharepoint,'Documento en Sharepoint')
 
     # Loop
     while True:
@@ -63,7 +99,11 @@ def main():
     
 
 if __name__ == '__main__':
-   main()
+    creds = set_credentials()
+    USR = creds[0]
+    PASSWD = creds[1]
+
+    main()
    
 
 

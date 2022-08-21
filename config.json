@@ -1,10 +1,8 @@
 {
-    "share_point": 
-        {
-            "user": "pasante@wellperf.com",
-            "password": "Wellperf2022",
-            "url": "https://wellperf.sharepoint.com",
-            "site": "https://wellperf.sharepoint.com/sites/coca/",
-            "doc_library": "Shared Documents/Sumario_PetroEcuador" 
-        }
+"share_point": 
+    {
+    "url": "https://wellperf.sharepoint.com", 
+    "site": "https://wellperf.sharepoint.com/sites/coca/", 
+    "doc_library": "Shared Documents/Sumario_PetroEcuador"
+    }
 }
