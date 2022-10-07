@@ -83,20 +83,18 @@ def upload_to_sharepoint(status):
     file_name = "0" + str(date.today().day-1)+ "-" + "0" + str(date.today().day) + '_' + "Resumen" + str(date.today().year) + str(date.today().month) + '.pdf'
     path_to_file = 'docs/sumario.pdf'
     SharePoint(USR,PASSWD).upload_file(path_to_file, file_name,str(date.today().year)+"/"+str(date.today().month))
-    print("Document in this sharepoint location: " + month_name() + '/' + file_name)
+    print("Document in this` sharepoint location: " + month_name() + '/' + file_name)
 
 
 
 def main():
-    schedule.every().day.at("10:00").do(get_summary,'Sumario descargado')
-    schedule.every().day.at("10:01").do(upload_to_sharepoint,'Documento en Sharepoint')
+    schedule.every().day.at("15:02").do(get_summary,'Sumario descargado')
+    schedule.every().day.at("15:03").do(upload_to_sharepoint,'Documento en Sharepoint')
 
-    # Loop
+    # Loopd
     while True:
         schedule.run_pending()
         time.sleep(1) # wait one minute
-
-    
 
 if __name__ == '__main__':
     creds = set_credentials()
