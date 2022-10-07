@@ -4,7 +4,7 @@
 import schedule
 import time
 import requests
-from bs4 import BeautifulSoup
+
 from sharepoint import SharePoint
 from datetime import date
 import datetime
