@@ -9,7 +9,7 @@ from sharepoint import SharePoint
 from datetime import date
 import datetime
 from shareplum import Site, Office365
-
+import streamlit as st
 
 
 from pdfminer3.layout import LAParams, LTTextBox
@@ -57,7 +57,7 @@ def get_petro_link():
     foo = soup.find('a',string = 'Sumario de Operaciones').get('href')
     return foo 
 
-def get_summary(text:str)->None:
+def get_summary()->None:
     """Descarga el sumario de operaciones de petroecuador
 
     Args:
@@ -67,7 +67,6 @@ def get_summary(text:str)->None:
     link = get_petro_link()
     print(link)
     data = requests.get(link).content
-    print(text)
     with open('docs/sumario.pdf','wb') as file:
         file.write(data)
 
@@ -78,7 +77,7 @@ def month_name():
     return full_month_name
     
 
-def upload_to_sharepoint(status):
+def upload_to_sharepoint():
     # Setting the name of the file 
     file_name = "0" + str(date.today().day-1)+ "-" + "0" + str(date.today().day) + '_' + "Resumen" + str(date.today().year) + str(date.today().month) + '.pdf'
     path_to_file = 'docs/sumario.pdf'
@@ -88,20 +87,36 @@ def upload_to_sharepoint(status):
 
 
 def main():
-    schedule.every().day.at("15:02").do(get_summary,'Sumario descargado')
-    schedule.every().day.at("15:03").do(upload_to_sharepoint,'Documento en Sharepoint')
+    schedule.every().day.at("22:27").do(get_summary,'Sumario descargado')
+    schedule.every().day.at("22:28").do(upload_to_sharepoint,'Documento en Sharepoint')
 
     # Loopd
     while True:
         schedule.run_pending()
         time.sleep(1) # wait one minute
 
-if __name__ == '__main__':
-    creds = set_credentials()
-    USR = creds[0]
-    PASSWD = creds[1]
 
-    main()
+if __name__ == '__main__':
+    st.title("Petro web Scraping.")
+    usr = st.text_input('Usuario: ')
+    passwd = st.text_input('Contraseña: ', type="password")
+    if st.button('Generar'):
+        
+        try:
+            log = Office365(SHAREPOINT_URL,usr, passwd).get_cookies()
+            USR = usr
+            PASSWD = passwd
+            st.warning("Credenciales aprobadas")
+            get_summary()
+            st.warning("Sumario descargado")
+            upload_to_sharepoint()
+            st.warning("Sumario en sharepoint")
+
+        except:
+            st.warning("Credenciales no aprobadas")
+
+    
+    
    
 
 
