@@ -1,26 +1,17 @@
-# TODO Herramienta para analizar el texto de un pdf
-# TODO Trigger o codigo que se ejecute permanentemente y a cierta hora realize algo
-
-import schedule
-import time
-import requests
 import logging 
-
-from sharepoint import SharePoint
-from datetime import date
+logging.basicConfig(filename="log.txt", level = logging.DEBUG,
+                        format="%(asctime)s %(message)s")
+import requests
 import datetime
-from shareplum import Site, Office365
-import streamlit as st
 import bs4 as bs
-
-
-
 import os
 import json
+from sharepoint import SharePoint
+from datetime import date
+from shareplum import Office365
 
-# starting login file 
-logging.basicConfig(filename="log.txt", level = logging.DEBUG,
-                    format="%(asctime)s %(message)s")
+# for the creations of creds file
+credentials = {}
 
 # set root directory
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -35,15 +26,43 @@ with open(config_path) as config_file:
 SHAREPOINT_URL = config['url']
 SHAREPOINT_SITE = config['site']
 
-# Global variables
-USR = ""
-PASSWD = ""
 
 
 def set_credentials(usr,passwd):
     try:
         
-        Office365(SHAREPOINT_URL,usr, passwd).get_cookies()
+
+        if (os.path.exists('creds.json')):
+            logging.info("Creds.json already created.")
+            creds_path = '/'.join([ROOT_DIR, 'creds.json'])
+
+            # read creds file
+            with open(creds_path) as creds_file:
+                creds = json.load(creds_file)
+               
+            
+            Office365(SHAREPOINT_URL,creds['user'], creds['password']).get_cookies()
+
+        else:
+            Office365(SHAREPOINT_URL,usr,passwd).get_cookies()
+
+            creds_dictionary = {
+                "user": usr ,
+                "password": passwd
+            }
+            json_object = json.dumps(creds_dictionary, indent=2)
+            with open("creds.json", "w") as outfile:
+                outfile.write(json_object)
+                logging.info('Creds.json creado correctamente.')
+
+            creds_path = '/'.join([ROOT_DIR, 'creds.json'])
+
+            # read creds file
+            with open(creds_path) as creds_file:
+                creds = json.load(creds_file)
+               
+            
+            
         logging.info("Login exitoso.")
     except:
         logging.error("Credenciales invalidas.")
@@ -75,7 +94,6 @@ def get_summary()->None:
     """
    
     link = get_petro_link()
-    print(link)
     data = requests.get(link).content
     with open('docs/sumario.pdf','wb') as file:
         file.write(data)
@@ -91,9 +109,19 @@ def upload_to_sharepoint():
     # Setting the name of the file 
     file_name = "0" + str(date.today().day-1)+ "-" + "0" + str(date.today().day) + '_' + "Resumen" + str(date.today().year) + str(date.today().month) + '.pdf'
     path_to_file = 'docs/sumario.pdf'
+
+    
     try: 
-        SharePoint(USR,PASSWD).upload_file(path_to_file, file_name,str(date.today().year)+"/"+str(date.today().month))
-        logging.info("Documento subido a Sharepoint.")
+        creds_path = '/'.join([ROOT_DIR, 'creds.json'])
+        with open(creds_path) as creds_file:
+            creds = json.load(creds_file)
+        SharePoint(creds['user'],creds['password']).upload_file(path_to_file, file_name,str(date.today().year)+"/"+str(date.today().month))
+        logging.info(f"Documento {str(date.today().year)}/{str(date.today().month)}/{file_name} subido a Sharepoint.")
+
+        # read creds file
+    except FileNotFoundError as e:
+        logging.error('Proceso terminado, credenciales no validas, error: ', e)
+        
     except:
         logging.error("El documento no se ha subido en Sharepoint.")
 
@@ -110,24 +138,25 @@ def upload_to_sharepoint():
 
 
 if __name__ == '__main__':
-    # st.title("Petro web Scraping.")
-    # usr = st.text_input('Usuario: ')
-    # passwd = st.text_input('Contraseña: ', type="password")
-    # if st.button('Generar'):
-        
-    #     try:
-    #         log = Office365(SHAREPOINT_URL,usr, passwd).get_cookies()
-    #         USR = usr
-    #         PASSWD = passwd
-    #         st.warning("Credenciales aprobadas")
-    #         get_summary()
-    #         st.warning("Sumario descargado")
-    #         upload_to_sharepoint()
-    #         st.warning("Sumario en sharepoint")
 
-    #     except:
-    #         st.warning("Credenciales no aprobadas")
-    pass 
+
+    if(os.path.exists('creds.json')):
+        creds_path = '/'.join([ROOT_DIR, 'creds.json'])
+        with open(creds_path) as creds_file:
+            creds = json.load(creds_file)
+
+        set_credentials(creds['user'],creds['password'])
+        get_summary()
+        upload_to_sharepoint()
+    else:
+        user = input('Ingresa correo wellperf: ')
+        password = input('Contrasenia: ')
+        set_credentials(user,password)
+        get_summary()
+        upload_to_sharepoint()
+    
+
+ 
     
     
    
