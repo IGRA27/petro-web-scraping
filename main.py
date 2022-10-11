@@ -10,6 +10,7 @@ from datetime import date
 import datetime
 from shareplum import Site, Office365
 import streamlit as st
+import bs4 as bs
 
 
 from pdfminer3.layout import LAParams, LTTextBox
@@ -53,7 +54,7 @@ def set_credentials():
 def get_petro_link():
     link = "https://www.eppetroecuador.ec/?p=3721" 
     data = requests.get(link).content
-    soup = BeautifulSoup(data, "html.parser")
+    soup = bs.BeautifulSoup(data, "html.parser")
     foo = soup.find('a',string = 'Sumario de Operaciones').get('href')
     return foo 
 
@@ -87,8 +88,8 @@ def upload_to_sharepoint():
 
 
 def main():
-    schedule.every().day.at("22:27").do(get_summary,'Sumario descargado')
-    schedule.every().day.at("22:28").do(upload_to_sharepoint,'Documento en Sharepoint')
+    schedule.every().day.at("18:30").do(get_summary,'Sumario descargado')
+    schedule.every().day.at("18:31").do(upload_to_sharepoint,'Documento en Sharepoint')
 
     # Loopd
     while True:
