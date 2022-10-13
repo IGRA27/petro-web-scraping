@@ -6,6 +6,8 @@ import datetime
 import bs4 as bs
 import os
 import json
+import schedule
+import time
 from sharepoint import SharePoint
 from datetime import date
 from shareplum import Office365
@@ -86,7 +88,7 @@ def get_petro_link():
         return None
 
 
-def get_summary()->None:
+def get_summary(text)->None:
     """Descarga el sumario de operaciones de petroecuador
 
     Args:
@@ -105,7 +107,7 @@ def month_name():
     return full_month_name
     
 
-def upload_to_sharepoint():
+def upload_to_sharepoint(text):
     # Setting the name of the file 
     file_name = "0" + str(date.today().day-1)+ "-" + "0" + str(date.today().day) + '_' + "Resumen" + str(date.today().year) + str(date.today().month) + '.pdf'
     path_to_file = 'docs/sumario.pdf'
@@ -127,14 +129,14 @@ def upload_to_sharepoint():
 
 
 
-# def main():
-#     schedule.every().day.at("18:30").do(get_summary,'Sumario descargado')
-#     schedule.every().day.at("18:31").do(upload_to_sharepoint,'Documento en Sharepoint')
+def main():
+    schedule.every().day.at("10:30").do(get_summary,"")
+    schedule.every().day.at("10:31").do(upload_to_sharepoint,"")
 
-#     # Loopd
-#     while True:
-#         schedule.run_pending()
-#         time.sleep(1) # wait one minute
+    # Loopd
+    while True:
+        schedule.run_pending()
+        time.sleep(1) # wait one minute
 
 
 if __name__ == '__main__':
@@ -146,14 +148,12 @@ if __name__ == '__main__':
             creds = json.load(creds_file)
 
         set_credentials(creds['user'],creds['password'])
-        get_summary()
-        upload_to_sharepoint()
+        main()
     else:
         user = input('Ingresa correo wellperf: ')
         password = input('Contrasenia: ')
         set_credentials(user,password)
-        get_summary()
-        upload_to_sharepoint()
+        main()
     
 
  
