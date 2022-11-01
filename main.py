@@ -8,66 +8,15 @@ import os
 import json
 import schedule
 import time
-from sharepoint import SharePoint
+from sharepoint import SHAREPOINT_SITE, SHAREPOINT_URL, SharePoint
 from datetime import date
 from shareplum import Office365
+from dotenv import load_dotenv
 
-# for the creations of creds file
-credentials = {}
-
-# set root directory
-ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
-config_path = '/'.join([ROOT_DIR, 'config.json'])
-
-# read config file
-with open(config_path) as config_file:
-    config = json.load(config_file)
-    config = config['share_point']
-
-# take data from json file
-SHAREPOINT_URL = config['url']
-SHAREPOINT_SITE = config['site']
-
-
-
-def set_credentials(usr,passwd):
-    try:
-        
-
-        if (os.path.exists('creds.json')):
-            logging.info("Creds.json already created.")
-            creds_path = '/'.join([ROOT_DIR, 'creds.json'])
-
-            # read creds file
-            with open(creds_path) as creds_file:
-                creds = json.load(creds_file)
-               
-            
-            Office365(SHAREPOINT_URL,creds['user'], creds['password']).get_cookies()
-
-        else:
-            Office365(SHAREPOINT_URL,usr,passwd).get_cookies()
-
-            creds_dictionary = {
-                "user": usr ,
-                "password": passwd
-            }
-            json_object = json.dumps(creds_dictionary, indent=2)
-            with open("creds.json", "w") as outfile:
-                outfile.write(json_object)
-                logging.info('Creds.json creado correctamente.')
-
-            creds_path = '/'.join([ROOT_DIR, 'creds.json'])
-
-            # read creds file
-            with open(creds_path) as creds_file:
-                creds = json.load(creds_file)
-               
-            
-            
-        logging.info("Login exitoso.")
-    except:
-        logging.error("Credenciales invalidas.")
+# search for .env or secret variables store on host service
+load_dotenv()
+USER = os.getenv('USER-MAIL')
+PASSWD = os.getenv('PASSWD')
 
 def get_petro_link():
     """ Obtiene el link del pdf.
@@ -87,7 +36,6 @@ def get_petro_link():
         logging.info("El link de descarga no se encontro en el scraping.")
         return None
 
-
 def get_summary(text)->None:
     """Descarga el sumario de operaciones de petroecuador
 
@@ -100,13 +48,11 @@ def get_summary(text)->None:
     with open('docs/sumario.pdf','wb') as file:
         file.write(data)
 
-
 def month_name():
     datetime_object = datetime.datetime.strptime(str(date.today().month), "%m")
     full_month_name = datetime_object.strftime("%B")
     return full_month_name
     
-
 def upload_to_sharepoint(text):
     # Setting the name of the file 
     file_name = "0" + str(date.today().day-1)+ "-" + "0" + str(date.today().day) + '_' + "Resumen" + str(date.today().year) + str(date.today().month) + '.pdf'
@@ -114,10 +60,9 @@ def upload_to_sharepoint(text):
 
     
     try: 
-        creds_path = '/'.join([ROOT_DIR, 'creds.json'])
-        with open(creds_path) as creds_file:
-            creds = json.load(creds_file)
-        SharePoint(creds['user'],creds['password']).upload_file(path_to_file, file_name,str(date.today().year)+"/"+str(date.today().month))
+
+        SharePoint(USER,PASSWD).upload_file(path_to_file, file_name,str(date.today().year)+"/"+str(date.today().month))
+        logging.info('Login Existoso.')
         logging.info(f"Documento {str(date.today().year)}/{str(date.today().month)}/{file_name} subido a Sharepoint.")
 
         # read creds file
@@ -130,31 +75,19 @@ def upload_to_sharepoint(text):
 
 
 def main():
-    schedule.every().day.at("10:30").do(get_summary,"")
-    schedule.every().day.at("10:31").do(upload_to_sharepoint,"")
 
-    # Loopd
+    schedule.every().day.at("00:48").do(get_summary,"")
+    schedule.every().day.at("00:49").do(upload_to_sharepoint,"")
+
+    # Loop
     while True:
         schedule.run_pending()
         time.sleep(1) # wait one minute
 
 
 if __name__ == '__main__':
+    main()
 
-
-    if(os.path.exists('creds.json')):
-        creds_path = '/'.join([ROOT_DIR, 'creds.json'])
-        with open(creds_path) as creds_file:
-            creds = json.load(creds_file)
-
-        set_credentials(creds['user'],creds['password'])
-        main()
-    else:
-        user = input('Ingresa correo wellperf: ')
-        password = input('Contrasenia: ')
-        set_credentials(user,password)
-        main()
-    
 
  
     

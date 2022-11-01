@@ -1,6 +1,7 @@
 from shareplum import Site, Office365
 from shareplum.site import Version
 from requests_ntlm import HttpNtlmAuth
+from dotenv import load_dotenv
 
 
 
@@ -14,10 +15,13 @@ with open(config_path) as config_file:
     config = json.load(config_file)
     config = config['share_point']
 
-
-SHAREPOINT_URL = config['url']
-SHAREPOINT_SITE = config['site']
-SHAREPOINT_DOC = config['doc_library']
+load_dotenv()
+#SHAREPOINT_URL = config['url']
+SHAREPOINT_URL = os.getenv('URL')
+#SHAREPOINT_SITE = config['site']
+SHAREPOINT_SITE = os.getenv('SITE')
+#SHAREPOINT_DOC = config['doc_library']
+SHAREPOINT_DOC = os.getenv('DOC_LIBRARY')
 
 class SharePoint:
 
