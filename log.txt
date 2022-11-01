@@ -1,22 +1,62 @@
-2022-11-01 00:48:00,125 Running job Job(interval=1, unit=days, do=get_summary, args=('',), kwargs={})
-2022-11-01 00:48:00,172 Starting new HTTPS connection (1): www.eppetroecuador.ec:443
-2022-11-01 00:48:01,498 https://www.eppetroecuador.ec:443 "GET /?p=3721 HTTP/1.1" 200 None
-2022-11-01 00:48:01,566 Se encontro el link de descarga.
-2022-11-01 00:48:01,568 Starting new HTTPS connection (1): www.eppetroecuador.ec:443
-2022-11-01 00:48:01,670 https://www.eppetroecuador.ec:443 "GET /wp-content/uploads/downloads/2022/10/PRD_PEC-RPR-20221030-SUMARIO-OPERACIONES-1.pdf HTTP/1.1" 200 None
-2022-11-01 00:49:00,996 Running job Job(interval=1, unit=days, do=upload_to_sharepoint, args=('',), kwargs={})
-2022-11-01 00:49:02,063 Starting new HTTPS connection (1): login.microsoftonline.com:443
-2022-11-01 00:49:02,817 https://login.microsoftonline.com:443 "POST /extSTS.srf HTTP/1.1" 200 3514
-2022-11-01 00:49:03,200 Starting new HTTPS connection (1): wellperf.sharepoint.com:443
-2022-11-01 00:49:03,919 https://wellperf.sharepoint.com:443 "POST /_forms/default.aspx?wa=wsignin1.0 HTTP/1.1" 302 118
-2022-11-01 00:49:04,070 https://wellperf.sharepoint.com:443 "GET / HTTP/1.1" 302 137
-2022-11-01 00:49:06,185 https://wellperf.sharepoint.com:443 "GET /SitePages/Home.aspx HTTP/1.1" 200 None
-2022-11-01 00:49:06,871 Starting new HTTPS connection (1): wellperf.sharepoint.com:443
-2022-11-01 00:49:07,665 https://wellperf.sharepoint.com:443 "POST /sites/coca//_vti_bin/Sites.asmx HTTP/1.1" 200 419
-2022-11-01 00:49:07,994 https://wellperf.sharepoint.com:443 "POST /sites/coca//_vti_bin/lists.asmx HTTP/1.1" 200 7750
-2022-11-01 00:49:08,131 https://wellperf.sharepoint.com:443 "POST /sites/coca//_api/contextinfo HTTP/1.1" 200 None
-2022-11-01 00:49:08,387 https://wellperf.sharepoint.com:443 "POST /sites/coca//_api/web/folders HTTP/1.1" 201 None
-2022-11-01 00:49:08,532 https://wellperf.sharepoint.com:443 "POST /sites/coca//_api/contextinfo HTTP/1.1" 200 None
-2022-11-01 00:49:09,235 https://wellperf.sharepoint.com:443 "POST /sites/coca//_api/web/GetFolderByServerRelativeUrl('Shared%20Documents/Sumario_PetroEcuador/2022/11')/Files/add(url='00-01_Resumen202211.pdf',overwrite=true) HTTP/1.1" 200 None
-2022-11-01 00:49:09,238 Login Existoso.
-2022-11-01 00:49:09,238 Documento 2022/11/00-01_Resumen202211.pdf subido a Sharepoint.
+2022-11-01 02:09:00,216 Running job Job(interval=1, unit=days, do=get_summary, args=('',), kwargs={})
+2022-11-01 02:09:00,283 Starting new HTTPS connection (1): www.eppetroecuador.ec:443
+2022-11-01 02:09:01,787 https://www.eppetroecuador.ec:443 "GET /?p=3721 HTTP/1.1" 200 None
+2022-11-01 02:09:01,858 Se encontro el link de descarga.
+2022-11-01 02:09:01,861 Starting new HTTPS connection (1): www.eppetroecuador.ec:443
+2022-11-01 02:09:01,957 https://www.eppetroecuador.ec:443 "GET /wp-content/uploads/downloads/2022/10/PRD_PEC-RPR-20221030-SUMARIO-OPERACIONES-1.pdf HTTP/1.1" 200 None
+2022-11-01 02:10:00,386 Running job Job(interval=1, unit=days, do=upload_to_sharepoint, args=('',), kwargs={})
+2022-11-01 02:10:00,421 Starting new HTTPS connection (1): login.microsoftonline.com:443
+2022-11-01 02:10:01,038 https://login.microsoftonline.com:443 "POST /extSTS.srf HTTP/1.1" 200 1720
+2022-11-01 02:10:01,045 El documento no se ha subido en Sharepoint.
+2022-11-01 02:12:00,376 Running job Job(interval=1, unit=days, do=get_summary, args=('',), kwargs={})
+2022-11-01 02:12:00,486 Starting new HTTPS connection (1): www.eppetroecuador.ec:443
+2022-11-01 02:12:01,738 https://www.eppetroecuador.ec:443 "GET /?p=3721 HTTP/1.1" 200 None
+2022-11-01 02:12:01,809 Se encontro el link de descarga.
+2022-11-01 02:12:01,812 Starting new HTTPS connection (1): www.eppetroecuador.ec:443
+2022-11-01 02:12:01,907 https://www.eppetroecuador.ec:443 "GET /wp-content/uploads/downloads/2022/10/PRD_PEC-RPR-20221030-SUMARIO-OPERACIONES-1.pdf HTTP/1.1" 200 None
+2022-11-01 02:13:00,245 Running job Job(interval=1, unit=days, do=upload_to_sharepoint, args=('',), kwargs={})
+2022-11-01 02:13:00,258 Starting new HTTPS connection (1): login.microsoftonline.com:443
+2022-11-01 02:13:00,862 https://login.microsoftonline.com:443 "POST /extSTS.srf HTTP/1.1" 200 1720
+2022-11-01 02:13:00,873 El documento no se ha subido en Sharepoint.
+2022-11-01 02:15:00,011 Running job Job(interval=1, unit=days, do=get_summary, args=('',), kwargs={})
+2022-11-01 02:15:00,119 Starting new HTTPS connection (1): www.eppetroecuador.ec:443
+2022-11-01 02:15:01,374 https://www.eppetroecuador.ec:443 "GET /?p=3721 HTTP/1.1" 200 None
+2022-11-01 02:15:01,435 Se encontro el link de descarga.
+2022-11-01 02:15:01,437 Starting new HTTPS connection (1): www.eppetroecuador.ec:443
+2022-11-01 02:15:01,537 https://www.eppetroecuador.ec:443 "GET /wp-content/uploads/downloads/2022/10/PRD_PEC-RPR-20221030-SUMARIO-OPERACIONES-1.pdf HTTP/1.1" 200 None
+2022-11-01 02:15:30,748 Running job Job(interval=1, unit=days, do=upload_to_sharepoint, args=('',), kwargs={})
+2022-11-01 02:15:30,782 Starting new HTTPS connection (1): login.microsoftonline.com:443
+2022-11-01 02:15:31,479 https://login.microsoftonline.com:443 "POST /extSTS.srf HTTP/1.1" 200 1720
+2022-11-01 02:15:31,487 El documento no se ha subido en Sharepoint.
+2022-11-01 02:17:40,174 Running job Job(interval=1, unit=days, do=get_summary, args=('',), kwargs={})
+2022-11-01 02:17:40,223 Starting new HTTPS connection (1): www.eppetroecuador.ec:443
+2022-11-01 02:17:41,333 https://www.eppetroecuador.ec:443 "GET /?p=3721 HTTP/1.1" 200 None
+2022-11-01 02:17:41,390 Se encontro el link de descarga.
+2022-11-01 02:17:41,393 Starting new HTTPS connection (1): www.eppetroecuador.ec:443
+2022-11-01 02:17:41,498 https://www.eppetroecuador.ec:443 "GET /wp-content/uploads/downloads/2022/10/PRD_PEC-RPR-20221030-SUMARIO-OPERACIONES-1.pdf HTTP/1.1" 200 None
+2022-11-01 02:18:00,670 Running job Job(interval=1, unit=days, do=upload_to_sharepoint, args=('',), kwargs={})
+2022-11-01 02:18:00,680 Starting new HTTPS connection (1): login.microsoftonline.com:443
+2022-11-01 02:18:01,304 https://login.microsoftonline.com:443 "POST /extSTS.srf HTTP/1.1" 200 1720
+2022-11-01 02:18:01,311 El documento no se ha subido en Sharepoint.
+2022-11-01 02:20:50,700 Running job Job(interval=1, unit=days, do=get_summary, args=('',), kwargs={})
+2022-11-01 02:20:50,752 Starting new HTTPS connection (1): www.eppetroecuador.ec:443
+2022-11-01 02:20:52,184 https://www.eppetroecuador.ec:443 "GET /?p=3721 HTTP/1.1" 200 None
+2022-11-01 02:20:52,256 Se encontro el link de descarga.
+2022-11-01 02:20:52,258 Starting new HTTPS connection (1): www.eppetroecuador.ec:443
+2022-11-01 02:20:52,356 https://www.eppetroecuador.ec:443 "GET /wp-content/uploads/downloads/2022/10/PRD_PEC-RPR-20221030-SUMARIO-OPERACIONES-1.pdf HTTP/1.1" 200 None
+2022-11-01 02:21:00,481 Running job Job(interval=1, unit=days, do=upload_to_sharepoint, args=('',), kwargs={})
+2022-11-01 02:21:00,514 Starting new HTTPS connection (1): login.microsoftonline.com:443
+2022-11-01 02:21:01,535 https://login.microsoftonline.com:443 "POST /extSTS.srf HTTP/1.1" 200 3508
+2022-11-01 02:21:01,974 Starting new HTTPS connection (1): wellperf.sharepoint.com:443
+2022-11-01 02:21:02,475 https://wellperf.sharepoint.com:443 "POST /_forms/default.aspx?wa=wsignin1.0 HTTP/1.1" 302 118
+2022-11-01 02:21:02,632 https://wellperf.sharepoint.com:443 "GET / HTTP/1.1" 302 137
+2022-11-01 02:21:03,345 https://wellperf.sharepoint.com:443 "GET /SitePages/Home.aspx HTTP/1.1" 200 None
+2022-11-01 02:21:03,492 Starting new HTTPS connection (1): wellperf.sharepoint.com:443
+2022-11-01 02:21:04,113 https://wellperf.sharepoint.com:443 "POST /sites/coca//_vti_bin/Sites.asmx HTTP/1.1" 200 419
+2022-11-01 02:21:04,324 https://wellperf.sharepoint.com:443 "POST /sites/coca//_vti_bin/lists.asmx HTTP/1.1" 200 7750
+2022-11-01 02:21:04,462 https://wellperf.sharepoint.com:443 "POST /sites/coca//_api/contextinfo HTTP/1.1" 200 None
+2022-11-01 02:21:04,750 https://wellperf.sharepoint.com:443 "POST /sites/coca//_api/web/folders HTTP/1.1" 201 None
+2022-11-01 02:21:04,905 https://wellperf.sharepoint.com:443 "POST /sites/coca//_api/contextinfo HTTP/1.1" 200 None
+2022-11-01 02:21:05,720 https://wellperf.sharepoint.com:443 "POST /sites/coca//_api/web/GetFolderByServerRelativeUrl('Shared%20Documents/Sumario_PetroEcuador/2022/11')/Files/add(url='00-01_Resumen202211.pdf',overwrite=true) HTTP/1.1" 200 None
+2022-11-01 02:21:05,730 Login Existoso.
+2022-11-01 02:21:05,730 Documento 2022/11/00-01_Resumen202211.pdf subido a Sharepoint.

@@ -13,9 +13,8 @@ from datetime import date
 from shareplum import Office365
 from dotenv import load_dotenv
 
-# search for .env or secret variables store on host service
 load_dotenv()
-USER = os.getenv('USER')
+WELLPERF_USER = os.getenv('WELLPERF_USER')
 PASSWD = os.getenv('PASSWD')
 
 def get_petro_link():
@@ -54,6 +53,9 @@ def month_name():
     return full_month_name
     
 def upload_to_sharepoint(text):
+    # search for .env or secret variables store on host service
+    
+    
     # Setting the name of the file 
     file_name = "0" + str(date.today().day-1)+ "-" + "0" + str(date.today().day) + '_' + "Resumen" + str(date.today().year) + str(date.today().month) + '.pdf'
     path_to_file = 'docs/sumario.pdf'
@@ -61,7 +63,7 @@ def upload_to_sharepoint(text):
     
     try: 
 
-        SharePoint(USER,PASSWD).upload_file(path_to_file, file_name,str(date.today().year)+"/"+str(date.today().month))
+        SharePoint(WELLPERF_USER,PASSWD).upload_file(path_to_file, file_name,str(date.today().year)+"/"+str(date.today().month))
         logging.info('Login Existoso.')
         logging.info(f"Documento {str(date.today().year)}/{str(date.today().month)}/{file_name} subido a Sharepoint.")
 
@@ -75,9 +77,9 @@ def upload_to_sharepoint(text):
 
 
 def main():
-
-    schedule.every().day.at("00:48").do(get_summary,"")
-    schedule.every().day.at("00:49").do(upload_to_sharepoint,"")
+   
+    schedule.every().day.at("02:20:50").do(get_summary,"")
+    schedule.every().day.at("02:21:00").do(upload_to_sharepoint,"")
 
     # Loop
     while True:

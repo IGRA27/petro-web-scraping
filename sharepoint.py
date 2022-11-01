@@ -7,13 +7,13 @@ from dotenv import load_dotenv
 
 import json, os
 
-ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
-config_path = '/'.join([ROOT_DIR, 'config.json'])
+# ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
+# config_path = '/'.join([ROOT_DIR, 'config.json'])
 
 # read config file
-with open(config_path) as config_file:
-    config = json.load(config_file)
-    config = config['share_point']
+# with open(config_path) as config_file:
+#     config = json.load(config_file)
+#     config = config['share_point']
 
 load_dotenv()
 #SHAREPOINT_URL = config['url']
