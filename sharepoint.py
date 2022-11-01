@@ -21,7 +21,7 @@ SHAREPOINT_URL = os.getenv('URL')
 #SHAREPOINT_SITE = config['site']
 SHAREPOINT_SITE = os.getenv('SITE')
 #SHAREPOINT_DOC = config['doc_library']
-SHAREPOINT_DOC = os.getenv('DOC_LIBRARY')
+SHAREPOINT_DOC = 'Shared Documents/Sumario_PetroEcuador'
 
 class SharePoint:
 
