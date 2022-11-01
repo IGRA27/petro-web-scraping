@@ -15,7 +15,7 @@ from dotenv import load_dotenv
 
 # search for .env or secret variables store on host service
 load_dotenv()
-USER = os.getenv('USER-MAIL')
+USER = os.getenv('USER')
 PASSWD = os.getenv('PASSWD')
 
 def get_petro_link():
