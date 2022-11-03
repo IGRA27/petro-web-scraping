@@ -85,8 +85,8 @@ def main():
     # while True:
     #     schedule.run_pending()
     #     time.sleep(1) # wait one minute
-    get_summary()
-    upload_to_sharepoint()
+    get_summary('foo')
+    upload_to_sharepoint('foo')
 
 
 if __name__ == '__main__':
