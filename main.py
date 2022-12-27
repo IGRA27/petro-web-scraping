@@ -78,8 +78,8 @@ def upload_to_sharepoint(text):
 
 def main():
    
-    schedule.every().day.at("19:25:50").do(get_summary,"")
-    schedule.every().day.at("19:26:00").do(upload_to_sharepoint,"")
+    schedule.every().day.at("19:30:50").do(get_summary,"")
+    schedule.every().day.at("19:31:00").do(upload_to_sharepoint,"")
 
     # Loop
     while True:
