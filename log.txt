@@ -94,3 +94,25 @@
 2022-12-04 19:44:45,863 Starting new HTTPS connection (1): wellperf.sharepoint.com:443
 2022-12-04 19:44:46,946 https://wellperf.sharepoint.com:443 "POST /_forms/default.aspx?wa=wsignin1.0 HTTP/1.1" 302 118
 2022-12-04 20:00:43,651 El documento no se ha subido en Sharepoint.
+2023-01-04 07:10:00,131 Running job Job(interval=1, unit=days, do=get_summary, args=('',), kwargs={})
+2023-01-04 07:10:00,170 Starting new HTTPS connection (1): www.eppetroecuador.ec:443
+2023-01-04 07:10:01,577 https://www.eppetroecuador.ec:443 "GET /?p=3721 HTTP/1.1" 200 None
+2023-01-04 07:10:01,637 Se encontro el link de descarga.
+2023-01-04 07:10:01,638 Starting new HTTPS connection (1): www.eppetroecuador.ec:443
+2023-01-04 07:10:01,690 https://www.eppetroecuador.ec:443 "GET /wp-content/uploads/downloads/2023/01/PRD_PEC-RPR-20230102-SUMARIO-OPERACIONES.pdf HTTP/1.1" 200 None
+2023-01-04 07:10:40,045 Running job Job(interval=1, unit=days, do=upload_to_sharepoint, args=('',), kwargs={})
+2023-01-04 07:10:40,055 Starting new HTTPS connection (1): login.microsoftonline.com:443
+2023-01-04 07:10:40,955 https://login.microsoftonline.com:443 "POST /extSTS.srf HTTP/1.1" 200 3516
+2023-01-04 07:10:40,971 Starting new HTTPS connection (1): wellperf.sharepoint.com:443
+2023-01-04 07:10:42,642 https://wellperf.sharepoint.com:443 "POST /_forms/default.aspx?wa=wsignin1.0 HTTP/1.1" 302 118
+2023-01-04 07:10:42,803 https://wellperf.sharepoint.com:443 "GET / HTTP/1.1" 302 137
+2023-01-04 07:10:43,451 https://wellperf.sharepoint.com:443 "GET /SitePages/Home.aspx HTTP/1.1" 200 None
+2023-01-04 07:10:43,699 Starting new HTTPS connection (1): wellperf.sharepoint.com:443
+2023-01-04 07:10:44,592 https://wellperf.sharepoint.com:443 "POST /sites/coca//_vti_bin/Sites.asmx HTTP/1.1" 200 419
+2023-01-04 07:10:44,826 https://wellperf.sharepoint.com:443 "POST /sites/coca//_vti_bin/lists.asmx HTTP/1.1" 200 7925
+2023-01-04 07:10:44,979 https://wellperf.sharepoint.com:443 "POST /sites/coca//_api/contextinfo HTTP/1.1" 200 None
+2023-01-04 07:10:45,326 https://wellperf.sharepoint.com:443 "POST /sites/coca//_api/web/folders HTTP/1.1" 201 None
+2023-01-04 07:10:45,516 https://wellperf.sharepoint.com:443 "POST /sites/coca//_api/contextinfo HTTP/1.1" 200 None
+2023-01-04 07:10:46,269 https://wellperf.sharepoint.com:443 "POST /sites/coca//_api/web/GetFolderByServerRelativeUrl('Shared%20Documents/Sumario_PetroEcuador/2023/1')/Files/add(url='03-04_Resumen20231.pdf',overwrite=true) HTTP/1.1" 200 None
+2023-01-04 07:10:46,274 Login Existoso.
+2023-01-04 07:10:46,274 Documento 2023/1/03-04_Resumen20231.pdf subido a Sharepoint.
