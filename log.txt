@@ -85,3 +85,11 @@
 2023-08-05 11:55:31,618 https://www.eppetroecuador.ec:443 "GET /wp-content/uploads/downloads/2023/08/PRD-PEC-RPR-20230804-SUMARIO-OPERACIONES.pdf HTTP/1.1" 200 None
 2023-08-05 11:55:50,805 Running job Job(interval=1, unit=days, do=upload_to_sharepoint, args=('',), kwargs={})
 2023-08-05 11:55:50,805 El documento no se ha subido en Sharepoint.
+2023-08-05 12:16:30,714 Running job Job(interval=1, unit=days, do=get_summary, args=('',), kwargs={})
+2023-08-05 12:16:30,719 Starting new HTTPS connection (1): www.eppetroecuador.ec:443
+2023-08-05 12:16:31,347 https://www.eppetroecuador.ec:443 "GET /?p=3721 HTTP/1.1" 200 None
+2023-08-05 12:16:32,028 Se encontro el link de descarga.
+2023-08-05 12:16:32,030 Starting new HTTPS connection (1): www.eppetroecuador.ec:443
+2023-08-05 12:16:32,172 https://www.eppetroecuador.ec:443 "GET /wp-content/uploads/downloads/2023/08/PRD-PEC-RPR-20230804-SUMARIO-OPERACIONES.pdf HTTP/1.1" 200 None
+2023-08-05 12:16:50,417 Running job Job(interval=1, unit=days, do=upload_to_sharepoint, args=('',), kwargs={})
+2023-08-05 12:16:50,417 El documento no se ha subido en Sharepoint.
