@@ -60,3 +60,20 @@
 2022-11-01 02:21:05,720 https://wellperf.sharepoint.com:443 "POST /sites/coca//_api/web/GetFolderByServerRelativeUrl('Shared%20Documents/Sumario_PetroEcuador/2022/11')/Files/add(url='00-01_Resumen202211.pdf',overwrite=true) HTTP/1.1" 200 None
 2022-11-01 02:21:05,730 Login Existoso.
 2022-11-01 02:21:05,730 Documento 2022/11/00-01_Resumen202211.pdf subido a Sharepoint.
+2023-08-05 10:04:58,669 Starting new HTTPS connection (1): www.eppetroecuador.ec:443
+2023-08-05 10:05:00,556 https://www.eppetroecuador.ec:443 "GET /?p=3721 HTTP/1.1" 200 None
+2023-08-05 10:05:01,275 Se encontro el link de descarga.
+2023-08-05 10:05:01,277 Starting new HTTPS connection (1): www.eppetroecuador.ec:443
+2023-08-05 10:05:01,366 https://www.eppetroecuador.ec:443 "GET /wp-content/uploads/downloads/2023/08/PRD-PEC-RPR-20230804-SUMARIO-OPERACIONES.pdf HTTP/1.1" 200 None
+2023-08-05 10:05:02,872 El documento no se ha subido en Sharepoint.
+2023-08-05 10:05:32,774 Starting new HTTPS connection (1): www.eppetroecuador.ec:443
+2023-08-05 10:05:33,295 https://www.eppetroecuador.ec:443 "GET /?p=3721 HTTP/1.1" 200 None
+2023-08-05 10:05:33,963 Se encontro el link de descarga.
+2023-08-05 10:05:33,965 Starting new HTTPS connection (1): www.eppetroecuador.ec:443
+2023-08-05 10:05:34,064 https://www.eppetroecuador.ec:443 "GET /wp-content/uploads/downloads/2023/08/PRD-PEC-RPR-20230804-SUMARIO-OPERACIONES.pdf HTTP/1.1" 200 None
+2023-08-05 10:05:34,392 El documento no se ha subido en Sharepoint.
+2023-08-05 10:14:38,725 Starting new HTTPS connection (1): www.eppetroecuador.ec:443
+2023-08-05 10:14:51,225 https://www.eppetroecuador.ec:443 "GET /?p=3721 HTTP/1.1" 200 None
+2023-08-05 10:15:02,182 Se encontro el link de descarga.
+2023-08-05 10:15:02,184 Starting new HTTPS connection (1): www.eppetroecuador.ec:443
+2023-08-05 10:16:18,707 https://www.eppetroecuador.ec:443 "GET /wp-content/uploads/downloads/2023/08/PRD-PEC-RPR-20230804-SUMARIO-OPERACIONES.pdf HTTP/1.1" 200 None
