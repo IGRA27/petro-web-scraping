@@ -82,8 +82,8 @@ def main():
     #get_summary("")  # Se ejecuta inmediatamente al iniciar el script
     #upload_to_sharepoint("")  # Se ejecuta inmediatamente después de get_summary
 
-    schedule.every().day.at("17:14:30").do(get_summary,"")
-    schedule.every().day.at("17:14:50").do(upload_to_sharepoint,"")
+    schedule.every().day.at("07:05:30").do(get_summary,"")
+    schedule.every().day.at("07:05:50").do(upload_to_sharepoint,"")
 
     # Loop
     while True:
